@@ -1,0 +1,112 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  line-height: 1.4;
+  font-family: "Montserrat", sans-serif;
+  color: #404040;
+  background-color: #e7ecf1;
+}
+
+.flex {
+  display: flex;
+
+  &.wrap {
+    flex-flow: row wrap;
+  }
+
+  .col {
+    flex-flow: column;
+
+    &.wrap {
+      flex-flow: column wrap;
+    }
+  }
+}
+
+section {
+  padding: 6.1rem;
+  justify-content: center;
+}
+
+/* Carrosel */
+
+.carrosel {
+  position: relative;
+  max-width: 100rem;
+
+  & .container {
+    overflow: hidden;
+  }
+
+  & .imagens {
+    gap: 0.82rem;
+    width: max-content;
+
+    & .imagem {
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      aspect-ratio: 1/1;
+      /* (100rem - (2 * 0.82rem)) / 3 */
+      width: min(
+        calc(calc(100rem - calc(2 * 0.82rem)) / 3),
+        calc(calc(100vw - calc(2 * 0.82rem)) / 3)
+      );
+      border-radius: 1rem;
+
+      &.emfoco::after {
+        background-color: transparent;
+        backdrop-filter: none;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(2px);
+      }
+
+      & img {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+
+  & .seta {
+    position: absolute;
+    top: 50%;
+    width: 3rem;
+    height: 3rem;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #303030;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+
+    &.esquerda {
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    &.direita {
+      right: 0;
+      transform: translate(50%, -50%);
+    }
+  }
+}
